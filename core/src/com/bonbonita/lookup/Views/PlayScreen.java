@@ -4,5 +4,54 @@ package com.bonbonita.lookup.Views;
  * Created by BonBonita on 22.01.2019.
  */
 
-public class PlayScreen {
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.bonbonita.lookup.LookUp;
+
+/**
+ * Created by BonBonita on 25.11.2018.
+ */
+
+public class PlayScreen implements Screen {
+
+    public PlayScreen(final LookUp lookUp) {
+
+    }
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(60/255.0f, 181/255.0f, 0.0f, 0.0f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
 }
