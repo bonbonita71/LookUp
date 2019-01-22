@@ -1,33 +1,54 @@
 package com.bonbonita.lookup;
 
-import com.badlogic.gdx.ApplicationAdapter;
+
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class LookUp extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+public class LookUp extends Game {
+	// screens
+	public LoadingScreen loadingScreen;
+	public SplashScreen splashScreen;
+	public MenuScreen menuScreen;
+	public PlayScreen playScreen;
+
+	public int SCREEN_WIDTH = 480;
+	public int SCREEN_HEIGHT = 800;
+
+	public OrthographicCamera camera;
+
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		Assets.init();
+
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+		loadingScreen = new LoadingScreen(this);
+		splashScreen = new SplashScreen(this);
+		menuScreen = new MenuScreen(this);
+		playScreen = new PlayScreen(this);
+
+
+		setScreen(loadingScreen);
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		super.render();
 	}
-	
+
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		loadingScreen.dispose();
+		splashScreen.dispose();
+		menuScreen.dispose();
+		playScreen.dispose();
+
+		Assets.dispose();
 	}
 }
+
