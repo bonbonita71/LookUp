@@ -14,10 +14,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 public class Assets {
     // static names for assets, for easier usage
     public static String LOGO = "images/logo.png";
-    public static String PLAY_BUTTON = "images/play.png";
-    //  public static String SPACESHIP = "images/spaceship.png";
-    // public static String ALIEN_1 = "images/alien1.png";
-    // public static String BULLET = "images/bullet.png";
+    public static String PLAY_BUTTON = "images/buttons/playbtn.png";
+    public static String NorthSkyMap = "images/stars_sever.png";
+    public static String INFO_BUTTON = "images/buttons/infobtn.png";
+    public static String RECORDS_BUTTON = "images/buttons/recordsbtn.png";
+    public static String SETTING_BUTTON = "images/buttons/settingbtn.png";
     // public static String SKIN = "skin/a/uiskin.atlas";
 
     private static AssetManager assetManager;
@@ -38,9 +39,10 @@ public class Assets {
     public static void load() {
         assetManager.load(LOGO, Texture.class);
         assetManager.load(PLAY_BUTTON, Texture.class);
-        // assetManager.load(SPACESHIP, Texture.class);
-        //  assetManager.load(ALIEN_1, Texture.class);
-        //  assetManager.load(BULLET, Texture.class);
+        assetManager.load(NorthSkyMap, Texture.class);
+        assetManager.load(INFO_BUTTON, Texture.class);
+        assetManager.load(RECORDS_BUTTON, Texture.class);
+        assetManager.load(SETTING_BUTTON, Texture.class);
         //  assetManager.load(SKIN, TextureAtlas.class);
     }
 

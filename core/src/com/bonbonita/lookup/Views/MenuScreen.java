@@ -26,22 +26,22 @@ public class MenuScreen implements Screen {
     float g = 255f;
     float b = 255f;
     private Stage stage;
-    private static final float WORLD_WIDTH = Gdx.graphics.getWidth();
-    private static final float WORLD_HEIGHT = Gdx.graphics.getHeight();
-    private final LookUp lookUp;
-    private Texture playTexture;
+   // private static final float WORLD_WIDTH = Gdx.graphics.getWidth();
+   // private static final float WORLD_HEIGHT = Gdx.graphics.getHeight();
+    private final LookUp app;
+   // private Texture playTexture;
 
-    public MenuScreen(final LookUp lookUp) {
-        this.lookUp = lookUp;
+    public MenuScreen(final LookUp app) {
+        this.app = app;
     }
     @Override
     public void show() {
-        stage = new Stage(new FitViewport(WORLD_WIDTH, WORLD_HEIGHT));
+        stage = new Stage(new FitViewport(app.SCREEN_WIDTH, app.SCREEN_HEIGHT));
         Gdx.input.setInputProcessor(stage);
 
-        playTexture = new Texture(Gdx.files.internal("images\\play.png"));
-        ImageButton play = new ImageButton(new TextureRegionDrawable(new TextureRegion(playTexture)));
-        play.setPosition(WORLD_WIDTH /2 - play.getWidth() / 2, WORLD_HEIGHT / 8 - play.getHeight() / 2 );
+       // playTexture =  Assets.getTexture(Assets.PLAY_BUTTON);
+        ImageButton play = new ImageButton(new TextureRegionDrawable(new TextureRegion(Assets.getTexture(Assets.PLAY_BUTTON))));
+        play.setPosition(app.SCREEN_WIDTH /2 - play.getWidth() / 2, app.SCREEN_HEIGHT / 8 - play.getHeight() / 2 );
         stage.addActor(play);
         play.addListener(new ActorGestureListener(){
             @Override
