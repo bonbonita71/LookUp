@@ -25,6 +25,7 @@ public class LoadingScreen implements Screen {
     private float progress;
     private float titleWidth;
     private String TITLE = "Загрузка...";
+    private String TITLE1 = "Loading...";
 
     public LoadingScreen(final LookUp lookUp) {
         this.app = lookUp;
@@ -60,6 +61,7 @@ public class LoadingScreen implements Screen {
         batcher.enableBlending();
         // draw title
         Assets.mainFont.draw(batcher, TITLE, (app.SCREEN_WIDTH - titleWidth) / 2 - 1, app.SCREEN_HEIGHT / 2 + 50);
+        Assets.mainFont.draw(batcher, TITLE1, (app.SCREEN_WIDTH - titleWidth) / 2 - 1, app.SCREEN_HEIGHT / 2 - 15);
         batcher.end();
 
         update(delta);

@@ -19,6 +19,7 @@ public class Assets {
     public static String INFO_BUTTON = "images/buttons/infobtn.png";
     public static String RECORDS_BUTTON = "images/buttons/recordsbtn.png";
     public static String SETTING_BUTTON = "images/buttons/settingbtn.png";
+    public static String NIGHTCITY = "images/background/nightcity.png";
     // public static String SKIN = "skin/a/uiskin.atlas";
 
     private static AssetManager assetManager;
@@ -43,6 +44,7 @@ public class Assets {
         assetManager.load(INFO_BUTTON, Texture.class);
         assetManager.load(RECORDS_BUTTON, Texture.class);
         assetManager.load(SETTING_BUTTON, Texture.class);
+        assetManager.load(NIGHTCITY, Texture.class);
         //  assetManager.load(SKIN, TextureAtlas.class);
     }
 

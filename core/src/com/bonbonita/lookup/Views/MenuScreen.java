@@ -54,7 +54,7 @@ public class MenuScreen implements Screen {
         dynamicStage.getViewport().getCamera().translate(-300, 1100, 0);
         ((OrthographicCamera)dynamicStage.getViewport().getCamera()).zoom -= 0.4f;
 
-        Texture skyMap = Assets.getTexture(Assets.NorthSkyMap);
+        final Texture skyMap = Assets.getTexture(Assets.NorthSkyMap);
         final Image picSkyMap = new Image(skyMap);
         picSkyMap.setPosition((int)(app.SCREEN_WIDTH /2 - picSkyMap.getWidth() / 2), (int)(app.SCREEN_HEIGHT/2 + picSkyMap.getHeight()/8 ));
         dynamicStage.addActor(picSkyMap);
@@ -77,6 +77,7 @@ public class MenuScreen implements Screen {
                 if (deltaX < 0)
                 {
                     System.out.println("panning " + deltaX + ", " + deltaY + " " + event.getTarget());
+                   // if(dynamicStage.getCamera().position.x >=skyMap.getWidth()/2)
                     ((OrthographicCamera)dynamicStage.getCamera()).translate(-10,0,0);
                 }
                 if (deltaX > 0)

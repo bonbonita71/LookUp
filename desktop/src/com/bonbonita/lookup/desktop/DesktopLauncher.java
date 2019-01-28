@@ -7,8 +7,8 @@ import com.bonbonita.lookup.LookUp;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 360;
-		config.height = 640;
+		config.width = 720;
+		config.height = 1280;
 		new LwjglApplication(new LookUp(), config);
 	}
 }
