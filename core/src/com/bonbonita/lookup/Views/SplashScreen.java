@@ -54,7 +54,7 @@ public class SplashScreen implements Screen {
         Runnable transitionRunnable = new Runnable() {
             @Override
             public void run() {
-                app.setScreen(app.menuScreen);
+                app.setScreen(app.startScreen);
             }
         };
 

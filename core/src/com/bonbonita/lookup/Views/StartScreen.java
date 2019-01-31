@@ -2,11 +2,15 @@ package com.bonbonita.lookup.Views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.bonbonita.lookup.LookUp;
 
@@ -25,14 +29,16 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 public class StartScreen implements Screen {
     private LookUp app;
     private Stage stage;
+    private boolean timerIsOn = false;// для Сплєш Скрин
+
 
     public StartScreen(final LookUp app) {
         this.app = app;
-        this.stage = new Stage(new FitViewport(app.SCREEN_WIDTH, app.SCREEN_HEIGHT, app.camera));
+
     }
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height, false);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -57,32 +63,46 @@ public class StartScreen implements Screen {
 
     @Override
     public void show() {
-        Runnable transitionRunnable = new Runnable() {
-            @Override
-            public void run() {
-                app.setScreen(app.menuScreen);
-            }
-        };
+        stage = new Stage(new FitViewport(app.SCREEN_WIDTH, app.SCREEN_HEIGHT));
+        Gdx.input.setInputProcessor(stage);
 
-        Texture splashTex = Assets.getTexture(Assets.LOGO);
-        Image logo = new Image(splashTex);
-        logo.setOrigin(logo.getWidth() / 2, logo.getHeight() / 2);
-        logo.setPosition((stage.getWidth() - logo.getWidth()) / 2, (stage.getHeight() - logo.getHeight()) / 2);
-        logo.addAction(sequence(alpha(0), scaleTo(.1f, .1f),
-                parallel(fadeIn(2f, Interpolation.pow2),
-                        scaleTo(2f, 2f, 1.5f, Interpolation.pow5),
-                        scaleTo(1f, 1f, 1.5f, Interpolation.pow5)),
-                fadeOut(1.25f), run(transitionRunnable)));
+        Texture backgroundTexture = Assets.getTexture(Assets.NIGHTCITY_BG);
+        Image background = new Image(backgroundTexture);
+        background.setScale((float)(app.SCREEN_WIDTH  / background.getWidth()),(float)(app.SCREEN_HEIGHT / background.getHeight() ));
+        stage.addActor(background);
 
-        stage.addActor(logo);
+
+// для Сплєш Скрин
+        if(!timerIsOn) {
+            timerIsOn = true;
+
+            Timer.schedule(new Timer.Task() {
+
+                @Override
+                public void run() {
+                    app.setScreen(app.menuScreen);
+                    dispose();
+                }
+
+            }, 3);
+
+        } else if(Gdx.input.isTouched()) {
+            // Remove the task so we don't call changeScreen twice:
+            Timer.instance().clear();
+            app.setScreen(app.menuScreen);
+            dispose();
+        }
     }
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        clearScreen();
         stage.act(delta);
         stage.draw();
+    }
+
+    private void clearScreen(){
+        Gdx.gl.glClearColor(Color.BLACK.r, Color.BLACK.g, Color.BLACK.b, Color.BLACK.a);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 }
 

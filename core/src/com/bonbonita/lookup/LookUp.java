@@ -15,7 +15,7 @@ public class LookUp extends Game {
 	public SplashScreen splashScreen;
 	public MenuScreen menuScreen;
 	public PlayScreen playScreen;
-
+	public StartScreen startScreen;
 	public int SCREEN_WIDTH = 480;
 	public int SCREEN_HEIGHT = 800;
 
@@ -32,6 +32,7 @@ public class LookUp extends Game {
 		splashScreen = new SplashScreen(this);
 		menuScreen = new MenuScreen(this);
 		playScreen = new PlayScreen(this);
+		startScreen = new StartScreen(this);
 
 
 		setScreen(loadingScreen);
@@ -48,6 +49,7 @@ public class LookUp extends Game {
 		splashScreen.dispose();
 		menuScreen.dispose();
 		playScreen.dispose();
+		startScreen.dispose();
 
 		Assets.dispose();
 	}
